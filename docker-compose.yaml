@@ -1,0 +1,24 @@
+services:
+  devops:
+    image: craftech-terraform-terragrunt
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TERRAFORM_VERSION: "1.5.5-1"  # Set desired Terraform version
+        TERRAGRUNT_VERSION: "0.67.16"  # Set desired Terragrunt version
+        KUBECTL_VERSION: "v1.30.5"  # Set desired kubectl version
+        GIT_USER_EMAIL: "agustin@craftech.io"
+        GIT_USER_NAME: "agustinmontero"
+    environment:
+      - SSH_AUTH_SOCK=/ssh-agent  # Set environment variable for SSH agent socket
+    env_file:
+      - .env
+    volumes:
+      - ".:/home/ubuntu/terraform"
+      - "~/.aws:/root/.aws:ro"  # Mount AWS credentials (read-only)
+      - "~/.ssh:/home/ubuntu/.ssh:ro"
+      - "/run/host-services/ssh-auth.sock:/ssh-agent"
+      - "~/.kube:/root/.kube:ro"
+    command: sleep infinity
+    tty: true
