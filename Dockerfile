@@ -22,6 +22,7 @@ RUN apt-get update && \
     gnupg \
     software-properties-common \
     git \
+    zsh \
     openssh-client && \
     apt-get clean
 
@@ -61,5 +62,8 @@ RUN terraform --version && \
 # Set the default working directory
 WORKDIR /home/ubuntu/terraform
 
+# Set Zsh as the default shell
+SHELL ["/bin/zsh", "-c"]
+
 # Default command
-CMD ["bash"]
+CMD ["zsh"]
