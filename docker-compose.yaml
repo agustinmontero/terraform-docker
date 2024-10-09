@@ -12,6 +12,7 @@ services:
         GIT_USER_NAME: "agustinmontero"
     environment:
       - SSH_AUTH_SOCK=/ssh-agent  # Set environment variable for SSH agent socket
+      - SHELL=/bin/zsh
     env_file:
       - .env
     volumes:
@@ -20,5 +21,8 @@ services:
       - "~/.ssh:/home/ubuntu/.ssh:ro"
       - "/run/host-services/ssh-auth.sock:/ssh-agent"
       - "~/.kube:/root/.kube:ro"
+      - "~/.zshrc:/root/.zshrc"
+      - "~/.oh-my-zsh:/root/.oh-my-zsh"
+      - "~/.zsh_history:/root/.zsh_history"
     command: sleep infinity
     tty: true
