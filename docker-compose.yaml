@@ -21,8 +21,8 @@ services:
       - "~/.ssh:/home/ubuntu/.ssh:ro"
       - "/run/host-services/ssh-auth.sock:/ssh-agent"
       - "~/.kube:/root/.kube:ro"
-      - "~/.zshrc:/root/.zshrc"
-      - "~/.oh-my-zsh:/root/.oh-my-zsh"
-      - "~/.zsh_history:/root/.zsh_history"
+      - "~/.zshrc:/root/.zshrc:ro"
+      - "~/.oh-my-zsh:/root/.oh-my-zsh:ro"
+      - "~/.zsh_history:/root/.zsh_history:ro"
     command: sleep infinity
     tty: true
